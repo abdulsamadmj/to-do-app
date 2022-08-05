@@ -1,3 +1,6 @@
+You can view the hosted app by visiting https://abdulsamadmj.github.io/to-do-app/
+
+This one is a beginner level ReactJS app, as the name suggests, to list your to-do's.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
