@@ -4,6 +4,10 @@ import { useState } from 'react'
 function App() {
   const [toDos, setToDos] = useState([])
   const [toDo, setToDo] = useState('')
+  var today = new Date();
+  var day = today.getDay();
+  var daylist = ["Sunday", "Monday", "Tuesday", "Wednesday ", "Thursday", "Friday", "Saturday"];
+  console.log("Today is : " + daylist[day] + ".");
   return (
     <div className="app">
       <div className="mainHeading">
@@ -11,7 +15,7 @@ function App() {
       </div>
       <div className="subHeading">
         <br />
-        <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
+        <h2>Whoop, it's {day && daylist[day]} 🌝 ☕ </h2>
       </div>
       <div className="input">
         <input value={toDo} onChange={(e) => setToDo(e.target.value)} type="text" placeholder="🖊️ Add item..." />
@@ -25,12 +29,12 @@ function App() {
             }
             ]
           )
-          setToDo(()=>'')
+          setToDo(() => '')
         }}></i>
       </div>
       <div className="todos">
         {toDos.map((obj) => {
-          return (<div className="todo">
+          return (<div key={obj.id} className="todo">
             <div className="left">
               <input onChange={(e) => {
                 console.log(e.target.checked);
@@ -46,11 +50,11 @@ function App() {
               <p>{obj.text}</p>
             </div>
             <div className="right">
-              <i className="fas fa-times" onClick={(e)=>{
+              <i className="fas fa-times" onClick={(e) => {
                 console.log(obj);
-                setToDos(toDos.filter(obj2=>{
-                  if (obj2.id===obj.id) {
-                    obj2=null
+                setToDos(toDos.filter(obj2 => {
+                  if (obj2.id === obj.id) {
+                    obj2 = null
                   }
                   return obj2
                 })
@@ -62,7 +66,7 @@ function App() {
         {toDos.map((obj) => {
           if (obj.status) {
             return (
-              <h1>{obj.text}</h1>
+              <h1 key={obj.id}>{obj.text}</h1>
             )
           }
           return null
